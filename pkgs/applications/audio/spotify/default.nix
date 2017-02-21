@@ -1,5 +1,5 @@
 { fetchurl, stdenv, dpkg, xorg, alsaLib, makeWrapper, openssl, freetype
-, glib, pango, cairo, atk, gdk_pixbuf, gtk2, cups, nspr, nss, libpng, GConf
+, glib, pango, cairo, atk, gdk_pixbuf, gtk2, cups, nspr, nss, libpng
 , libgcrypt, systemd, fontconfig, dbus, expat, ffmpeg_0_10, curl, zlib, gnome2 }:
 
 assert stdenv.system == "x86_64-linux";
@@ -8,6 +8,7 @@ let
   # Please update the stable branch!
   version = "1.0.45.182.gbbd5909f-72";
 
+  pkgs = import <nixpkgs> {};
   deps = [
     alsaLib
     atk
@@ -19,7 +20,7 @@ let
     ffmpeg_0_10
     fontconfig
     freetype
-    GConf
+    pkgs.gnome.GConf
     gdk_pixbuf
     glib
     gtk2
@@ -50,8 +51,9 @@ stdenv.mkDerivation {
 
   src =
     fetchurl {
-      url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${version}_amd64.deb";
-      sha256 = "dadf68c2cf1d09479632312301fb0ef9b18da841449141bacfa5e75d14e5fc6e";
+      url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_1.0.45.186.g3b5036d6-95_amd64.deb";
+      # url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${version}_amd64.deb";
+      sha256 = "e19a5277ea7dee8796edcc49de07036b32cac0ce553ef2aed7416dff6bf8fb3a";
     };
 
   buildInputs = [ dpkg makeWrapper ];
@@ -113,7 +115,7 @@ stdenv.mkDerivation {
   meta = {
     homepage = https://www.spotify.com/;
     description = "Play music from the Spotify music service";
-    license = stdenv.lib.licenses.unfree;
+    # license = stdenv.lib.licenses.unfree;
     maintainers = with stdenv.lib.maintainers; [ eelco ftrvxmtrx sheenobu mudri ];
   };
 }
