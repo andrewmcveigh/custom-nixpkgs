@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo "here" >> /tmp/log
+/run/current-system/sw/bin/systemd-cat -t "xrandr_auto" echo "Setting DISPLAY=:0"
+echo "here2" >> /tmp/log
+export DISPLAY=:0
+echo "here3" >> /tmp/log
+/run/current-system/sw/bin/systemd-cat -t "xrandr_auto" echo "Setting XAUTHORITY=/home/andrewmcveigh/.Xauthority"
+echo "here4" >> /tmp/log
+export XAUTHORITY=/home/andrewmcveigh/.Xauthority
+echo "here5" >> /tmp/log
+/run/current-system/sw/bin/systemd-cat -t "xrandr_auto" echo "Calling xrandr --auto"
+echo "here6" >> /tmp/log
+/run/current-system/sw/bin/systemd-cat -t "xrandr_auto" xrandr --auto
+echo "here7" >> /tmp/log

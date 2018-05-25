@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+sleep 1
+DISPLAY=":0.0"
+HOME=/home/andrewmcveigh/
+XAUTHORITY=$HOME/.Xauthority
+export DISPLAY XAUTHORITY HOME
+
+#xset r rate 200 30
+setxkbmap -layout us
+setxkbmap -option none
